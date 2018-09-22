@@ -1,44 +1,23 @@
-import Koa from 'koa'
-import Router from 'koa-router'
-import serve from 'koa-static'
-import path from 'path'
+// tslint:disable:no-console
+import * as cors from '@koa/cors'
+import * as Koa from 'koa'
+import * as helmet from 'koa-helmet'
+import * as logger from 'koa-logger'
+import * as Router from 'koa-router'
+import buildRoutes from './routes'
 
 const app = new Koa()
+const router = buildRoutes(new Router({}))
 
-// logger
+app.use(helmet())
+app.use(cors())
 
-app.use(async (ctx, next) => {
-  await next()
-  const responseTime = ctx.response.get('X-Response-Time')
-  console.log(`${ctx.method} ${ctx.url} - ${responseTime}`)
-})
-
-// x-response-type
-
-app.use(async (ctx, next) => {
-  const start = Date.now()
-  await next()
-  const end = Date.now()
-  const ms = end - start
-
-  ctx.set('X-Response-Time', `${ms}ms`)
-})
-
-const router = new Router()
-router.get(
-  '/*',
-  serve(path.resolve(__dirname, '../../public'), {
-    maxage: 30 * 100 * 60,
-  })
-)
-// router.use(express.static(
-//   path.resolve(__dirname, '..', 'build'),
-//   { maxAge: '30d' },
-// ));
-// router.get('/*', async ctx => {
-//   ctx.body = 'Hello World'
-// })
+if (process.env.NODE_ENV !== 'production') {
+  app.use(logger())
+}
 
 app.use(router.routes())
+app.use(router.allowedMethods())
+
 app.listen(4000)
 console.log('Server running on port 4000')

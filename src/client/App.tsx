@@ -1,11 +1,12 @@
 import * as React from 'react'
 import './App.css'
 
-import logo from './logo.svg'
+import * as logo from './logo.svg'
 
 class App extends React.Component {
   public render() {
     const title = 'Welcome to React!'
+
     return (
       <div className="App">
         <header className="App-header">
