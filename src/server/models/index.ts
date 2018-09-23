@@ -1,5 +1,6 @@
 import { Document, model, Schema } from 'mongoose'
-import pubsub, * as ACTION from './pubsub'
+import pubsub, * as ACTION from '../pubsub'
+import { IPluginDocument, postCreate } from './plugins'
 
 interface IMessage {
   body: string
@@ -15,10 +16,14 @@ const messageSchema = new Schema({
   user: { type: String, required: true },
 })
 
-messageSchema.pre('save', async function(this: IMessageModel) {
-  if (this.isNew) {
+messageSchema.plugin(postCreate)
+messageSchema.post('save', async function(
+  this: IMessageModel & IPluginDocument
+) {
+  if (this._wasNew) {
     pubsub.publish(ACTION.MESSAGE_ADDED, this)
   }
+  return this
 })
 
 export const Message = model<IMessageModel>('Message', messageSchema)

@@ -5,19 +5,19 @@ import pubsub, * as ACTION from './pubsub'
 
 export const typeDefs = gql`
   type Query {
-    messages: [Message]
+    messages: [Message]!
   }
   type Mutation {
-    addMessage(user: String, body: String): Message
+    addMessage(user: String!, body: String!): Message!
   }
   type Subscription {
-    messageAdded: Message
+    messageAdded: Message!
   }
   type Message {
-    id: ID
-    user: String
-    body: String
-    date: String
+    id: ID!
+    user: String!
+    body: String!
+    date: String!
   }
 `
 
