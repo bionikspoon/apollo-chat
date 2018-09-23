@@ -1,23 +1,23 @@
 // tslint:disable:no-console
 import * as cors from '@koa/cors'
+import { ApolloServer } from 'apollo-server-koa'
+import * as http from 'http'
 import * as Koa from 'koa'
 import * as helmet from 'koa-helmet'
 import * as logger from 'koa-logger'
-import * as Router from 'koa-router'
-import buildRoutes from './routes'
+import { resolvers, typeDefs } from './schema'
 
 const app = new Koa()
-const router = buildRoutes(new Router({}))
-
-app.use(helmet())
-app.use(cors())
+const server = new ApolloServer({ typeDefs, resolvers })
 
 if (process.env.NODE_ENV !== 'production') {
   app.use(logger())
 }
+app.use(helmet())
+app.use(cors())
 
-app.use(router.routes())
-app.use(router.allowedMethods())
+server.applyMiddleware({ app, path: '/api/graphql' })
+const httpServer = http.createServer(app.callback())
+server.installSubscriptionHandlers(httpServer)
 
-app.listen(4000)
-console.log('Server running on port 4000')
+httpServer.listen(4000)

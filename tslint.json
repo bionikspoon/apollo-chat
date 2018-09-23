@@ -7,9 +7,6 @@
       "coverage/lcov-report/*.js"
     ]
   },
-  "rules": {
-    "no-console": {
-      "severity": "warning"
-    }
-  }
+  "defaultSeverity": "warning",
+  "rules": {}
 }
