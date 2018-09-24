@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
 app.use(helmet())
 app.use(cors())
 
-apolloServer.applyMiddleware({ app, path: '/api/graphql' })
+apolloServer.applyMiddleware({ app, path: '/graphql' })
 apolloServer.installSubscriptionHandlers(httpServer)
 
 export default httpServer

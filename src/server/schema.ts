@@ -11,7 +11,7 @@ export const typeDefs = gql`
     addMessage(user: String!, body: String!): Message!
   }
   type Subscription {
-    messageAdded: Message!
+    messageAdded: Message
   }
   type Message {
     id: ID!
