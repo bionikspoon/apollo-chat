@@ -1,5 +1,6 @@
-import { append, evolve, pipe, prop, uniqBy } from 'ramda'
+import { append, evolve, pipe, prop, reverse, uniqBy } from 'ramda'
 import * as React from 'react'
+
 import { MESSAGE_ADDED_SUBSCRIPTION, MessageProps } from './enhancers'
 
 const addItem = (item: any) =>
@@ -30,16 +31,23 @@ export default class Messages extends React.Component<MessageProps> {
     if (!props.data.messages) return null
 
     return (
-      <React.Fragment>
-        {props.data.messages.map(message => {
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          height: 'calc(100% - 30px)',
+          overflowY: 'scroll',
+        }}
+      >
+        {reverse(props.data.messages).map(message => {
           return (
-            <div key={message.id}>
+            <p key={message.id} style={{ margin: 0 }}>
               <span>{message.user}</span>
               <span>{message.body}</span>
-            </div>
+            </p>
           )
         })}
-      </React.Fragment>
+      </div>
     )
   }
 }
