@@ -1,3 +1,4 @@
+import { Tag } from '@blueprintjs/core'
 import { append, evolve, pipe, prop, reverse, uniqBy } from 'ramda'
 import * as React from 'react'
 
@@ -41,9 +42,11 @@ export default class Messages extends React.Component<MessageProps> {
       >
         {reverse(props.data.messages).map(message => {
           return (
-            <p key={message.id} style={{ margin: 0 }}>
-              <span>{message.user}</span>
-              <span>{message.body}</span>
+            <p key={message.id} style={{ marginBottom: 2 }}>
+              <Tag minimal={true} intent="primary">
+                {message.user}
+              </Tag>
+              <span style={{ marginLeft: 5 }}>{message.body}</span>
             </p>
           )
         })}

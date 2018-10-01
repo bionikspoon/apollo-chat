@@ -1,4 +1,4 @@
-import { Button, InputGroup } from '@blueprintjs/core'
+import { Button, ControlGroup, InputGroup, Tag } from '@blueprintjs/core'
 import * as React from 'react'
 import { AddMessageFormProps } from './enhancers'
 
@@ -11,14 +11,19 @@ export default class AddMessageForm extends React.Component<
   public render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <InputGroup
-          type="text"
-          value={this.state.body}
-          onChange={this.handleInputChange}
-          rightElement={
-            <Button type="submit" icon="arrow-right" intent="primary" />
-          }
-        />
+        <ControlGroup fill={true}>
+          <Tag intent="success" style={{ flexGrow: 0 }}>
+            Manu
+          </Tag>
+          <InputGroup
+            type="text"
+            value={this.state.body}
+            onChange={this.handleInputChange}
+            rightElement={
+              <Button type="submit" icon="arrow-right" intent="success" />
+            }
+          />
+        </ControlGroup>
       </form>
     )
   }
