@@ -6,6 +6,11 @@
   "author": "Manu Phatak <manu@thinkcerca.com>",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": "8.12.x",
+    "npm": "6.4.x",
+    "yarn": "1.10.x"
+  },
   "dependencies": {
     "@blueprintjs/core": "^3.6.1",
     "@koa/cors": "^2.2.2",
@@ -46,6 +51,7 @@
     "@types/ramda": "^0.25.38",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.7",
+    "concurrently": "^4.0.1",
     "husky": "^1.0.0-rc.15",
     "nodemon": "^1.18.4",
     "prettier": "^1.14.3",
@@ -54,12 +60,15 @@
     "typescript": "^3.0.3"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "postbuild": "yarn tsc",
+    "build": "concurrently 'yarn build:client' 'yarn build:server'",
+    "build:client": "react-scripts-ts build",
+    "build:server": "tsc",
+    "heroku-postbuild": "yarn build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "server:watch": "nodemon --watch 'src/server/**/*' -e ts,tsx --exec 'ts-node' ./src/server/index.ts"
+    "watch": "concurrently --kill-others 'yarn watch:client' 'yarn watch:server'",
+    "watch:client": "react-scripts-ts start",
+    "watch:server": "nodemon --watch 'src/server/**/*' -e ts,tsx --exec 'ts-node' ./src/server/index.ts"
   },
   "husky": {
     "hooks": {
