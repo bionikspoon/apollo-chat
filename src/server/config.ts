@@ -1,15 +1,16 @@
 import { Options } from 'koa-static'
 import * as path from 'path'
+import env from './env'
 
 export default {
   app: {
-    port: 4000,
+    port: env.PORT,
     static: {
       options: {} as Options,
       path: path.resolve(__dirname, '../../build'),
     },
   },
   mongo: {
-    url: process.env.MONGODB_URI || 'mongodb://localhost/app',
+    url: env.MONGODB_URI,
   },
 }
