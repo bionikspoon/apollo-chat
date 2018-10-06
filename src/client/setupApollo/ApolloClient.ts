@@ -152,7 +152,7 @@ export default class DefaultClient<TCache> extends ApolloClient<TCache> {
 
     const wsLink = new WebSocketLink({
       options: { reconnect: true },
-      uri: `ws://${location.host}/graphql`,
+      uri: `${location.origin.replace(/^http/, 'ws')}${uri || '/graphql'}`,
     })
 
     const webLink = split(
