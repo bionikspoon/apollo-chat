@@ -5,8 +5,8 @@ import * as React from 'react'
 import { ApolloProvider } from 'react-apollo'
 
 import AddMessageForm from '../AddMessageForm'
-import { client } from '../apollo'
 import Messages from '../Messages'
+import { client } from '../setupApollo'
 
 export default function App() {
   return (
