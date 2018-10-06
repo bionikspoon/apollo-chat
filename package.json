@@ -66,9 +66,9 @@
     "heroku-postbuild": "yarn build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "watch": "concurrently --kill-others 'yarn watch:client' 'yarn watch:server'",
-    "watch:client": "react-scripts-ts start",
-    "watch:server": "nodemon --watch 'src/server/**/*' -e ts,tsx --exec 'ts-node' ./src/server/index.ts"
+    "start": "concurrently --kill-others 'yarn start:client' 'yarn start:server'",
+    "start:client": "react-scripts-ts start",
+    "start:server": "nodemon --watch 'src/server/**/*' -e ts,tsx --exec 'ts-node' ./src/server/index.ts"
   },
   "husky": {
     "hooks": {
