@@ -4,7 +4,7 @@ before_install:
   - yarn --version
 script: yarn test --coverage --cacheDirectory=jest_cache
 after_success:
-  - cat coverage/lcov.info | npx coverage
+  - cat coverage/lcov.info | npx coveralls
 cache:
   yarn: true
   directories:
