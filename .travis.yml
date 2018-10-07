@@ -1,7 +1,8 @@
 language: node_js
 before_install:
   - npm i -g yarn@1.10.x
+  - yarn --version
 cache:
   yarn: true
   directories:
-    - 'node_modules'
+    - node_modules
