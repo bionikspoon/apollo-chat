@@ -1,18 +1,20 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Model, Document } from 'mongoose'
 import { IPostCreateSchema, postCreatePlugin } from './plugins'
 
 describe('#postCreatePlugin', () => {
-  const testSchema = new Schema({
-    hello: String,
-  }) as IPostCreateSchema<Schema>
-
-  testSchema.plugin(postCreatePlugin)
-  const Test = model('Test', testSchema)
-
+  let Test: Model<Document>
   let postCreateCB1: any
   let postCreateCB2: any
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    const testSchema = new Schema({
+      hello: String,
+    }) as IPostCreateSchema<Schema>
+
+    testSchema.plugin(postCreatePlugin)
+    Test = model('Test', testSchema)
+    await Test.init()
+
     postCreateCB1 = jest.fn()
     postCreateCB2 = jest.fn()
 
