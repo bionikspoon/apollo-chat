@@ -5,9 +5,3 @@ exports[`it matches snapshot 1`] = `
   <Component />
 </Route>
 `;
-
-exports[`matches snapshot 1`] = `
-<Route>
-  <Component />
-</Route>
-`;
