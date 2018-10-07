@@ -1,7 +1,8 @@
+import * as React from 'react'
+
 import { Tag } from '@blueprintjs/core'
 import { css, StyleSheet } from 'aphrodite'
 import { append, evolve, pipe, prop, reverse, uniqBy } from 'ramda'
-import * as React from 'react'
 
 import { MESSAGE_ADDED_SUBSCRIPTION, MessageProps } from './enhancers'
 

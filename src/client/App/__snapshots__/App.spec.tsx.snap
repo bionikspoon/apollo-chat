@@ -13,7 +13,11 @@ exports[`matches snapshot 1`] = `
           "storeFactory": [Function],
         },
         "data": ObjectCache {
-          "data": Object {},
+          "data": Object {
+            "ROOT_QUERY": Object {
+              "username": "",
+            },
+          },
         },
         "optimistic": Array [],
         "silenceBroadcast": false,
@@ -42,7 +46,11 @@ exports[`matches snapshot 1`] = `
             "storeFactory": [Function],
           },
           "data": ObjectCache {
-            "data": Object {},
+            "data": Object {
+              "ROOT_QUERY": Object {
+                "username": "",
+              },
+            },
           },
           "optimistic": Array [],
           "silenceBroadcast": false,
@@ -55,11 +63,26 @@ exports[`matches snapshot 1`] = `
     }
   }
 >
-  <div
-    className="bp3-ui-text bp3-dark container_1py0714"
-  >
-    <Apollo(Messages) />
-    <Apollo(AddMessageForm) />
-  </div>
+  <BrowserRouter>
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        path="/chat"
+      />
+      <Route
+        component={[Function]}
+        path="/loading"
+      />
+      <Redirect
+        push={false}
+        to="/"
+      />
+    </Switch>
+  </BrowserRouter>
 </ApolloProvider>
 `;

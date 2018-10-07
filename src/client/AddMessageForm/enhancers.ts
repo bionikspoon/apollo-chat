@@ -1,5 +1,22 @@
 import gql from 'graphql-tag'
-import { ChildMutateProps, graphql } from 'react-apollo'
+import { ChildMutateProps, graphql, compose, ChildProps } from 'react-apollo'
+import { RouteComponentProps, withRouter } from 'react-router'
+
+interface IData {
+  username: string
+}
+interface IResponse {
+  id: string
+  user: string
+  body: string
+  date: string
+}
+
+const GET_USERNAME = gql`
+  query GetUsername {
+    username @client
+  }
+`
 
 const ADD_MESSAGE_MUTATION = gql`
   mutation AddMessageForm($user: String!, $body: String!) {
@@ -12,13 +29,13 @@ const ADD_MESSAGE_MUTATION = gql`
   }
 `
 
-interface IResponse {
-  id: string
-  user: string
-  body: string
-  date: string
-}
+export default compose(
+  withRouter,
+  graphql(GET_USERNAME),
+  graphql(ADD_MESSAGE_MUTATION)
+)
 
-export default graphql<{}, IResponse, {}>(ADD_MESSAGE_MUTATION)
-
-export type AddMessageFormProps = ChildMutateProps<{}, IResponse>
+export type AddMessageFormProps = ChildMutateProps<
+  ChildProps<RouteComponentProps, IData>,
+  IResponse
+>
