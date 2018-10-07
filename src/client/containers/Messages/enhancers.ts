@@ -25,6 +25,6 @@ export const MESSAGE_ADDED_SUBSCRIPTION = gql`
 interface IData {
   messages: [{ id: string; body: string; user: string; date: string }]
 }
-export type MessageProps = ChildProps<{}, IData>
+export type MessagesProps = ChildProps<{}, IData>
 
 export default graphql<{}, IData, {}>(MESSAGES_QUERY)
