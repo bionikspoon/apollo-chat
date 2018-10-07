@@ -23,7 +23,9 @@ describe('#postCreatePlugin', () => {
   })
 
   test('it triggers post create hooks', async () => {
+    jest.setTimeout(30000)
     await Test.create({ hello: 'world' })
+
     expect(postCreateCB1).toHaveBeenCalledTimes(1)
     expect(postCreateCB2).toHaveBeenCalledTimes(1)
   })
