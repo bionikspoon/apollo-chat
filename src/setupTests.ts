@@ -21,6 +21,4 @@ beforeAll(async () => {
   )
 })
 
-afterAll(async () => {
-  await disconnect()
-})
+afterAll(() => disconnect())
