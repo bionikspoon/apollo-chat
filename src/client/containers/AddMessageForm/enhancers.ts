@@ -37,7 +37,7 @@ const ADD_MESSAGE_MUTATION = gql`
 export default compose(
   withRouter,
   graphql(GET_USERNAME),
-  graphql(ADD_MESSAGE_MUTATION, { name: 'addMessage' })
+  graphql(ADD_MESSAGE_MUTATION)
 )
 
 export type AddMessageFormProps = ChildMutateProps<

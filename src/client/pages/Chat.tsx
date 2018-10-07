@@ -1,7 +1,7 @@
 import * as React from 'react'
-import AddMessageForm from '../AddMessageForm'
-import Messages from '../Messages'
-import PageLayout from '../PageLayout'
+import PageLayout from '../components/PageLayout'
+import AddMessageForm from '../containers/AddMessageForm'
+import Messages from '../containers/Messages'
 
 export default function Chat() {
   return (

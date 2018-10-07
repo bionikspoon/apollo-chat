@@ -2,16 +2,16 @@ import * as React from 'react'
 import { ApolloProvider } from 'react-apollo'
 import * as Loadable from 'react-loadable'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { client } from '../../setupApollo'
 import FullPageLoading from '../FullPageLoading'
-import { client } from '../setupApollo'
 
 const AsyncHome = Loadable({
-  loader: () => import('../pages/Home'),
+  loader: () => import('../../pages/Home'),
   loading: FullPageLoading,
 })
 
 const AsyncChat = Loadable({
-  loader: () => import('../pages/Chat'),
+  loader: () => import('../../pages/Chat'),
   loading: FullPageLoading,
 })
 

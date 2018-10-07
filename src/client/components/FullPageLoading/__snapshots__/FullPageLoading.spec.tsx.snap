@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it matches snapshot 1`] = `
+<FullPageLoading>
+  <PageLayout
+    css={
+      Object {
+        "_definition": Object {
+          "justifyContent": "center",
+        },
+        "_len": 27,
+        "_name": "container_agrn11",
+      }
+    }
+  >
+    <div
+      className="bp3-ui-text bp3-dark container_ybok0l-o_O-container_agrn11"
+    >
+      <Blueprint3.Spinner
+        intent="primary"
+        size={100}
+      >
+        <div
+          className="bp3-spinner bp3-intent-primary"
+        >
+          <span
+            className="bp3-spinner-animation"
+          >
+            <svg
+              height={100}
+              strokeWidth={4}
+              viewBox="0 0 100 100"
+              width={100}
+            >
+              <path
+                className="bp3-spinner-track"
+                d="M 50,50 m 0,-44.5 a 44.5,44.5 0 1 1 0,89 a 44.5,44.5 0 1 1 0,-89"
+              />
+              <path
+                className="bp3-spinner-head"
+                d="M 50,50 m 0,-44.5 a 44.5,44.5 0 1 1 0,89 a 44.5,44.5 0 1 1 0,-89"
+                pathLength={280}
+                strokeDasharray="280 280"
+                strokeDashoffset={210}
+              />
+            </svg>
+          </span>
+        </div>
+      </Blueprint3.Spinner>
+    </div>
+  </PageLayout>
+</FullPageLoading>
+`;

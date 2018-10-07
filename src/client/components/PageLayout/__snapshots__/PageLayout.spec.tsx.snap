@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it matches snapshot 1`] = `
+<PageLayout>
+  <div
+    className="bp3-ui-text bp3-dark container_ybok0l"
+  >
+    <h1>
+      Test
+    </h1>
+  </div>
+</PageLayout>
+`;
