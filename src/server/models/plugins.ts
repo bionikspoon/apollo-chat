@@ -7,16 +7,19 @@ import { Document, Schema } from 'mongoose'
 // https://medium.com/@aherve/simple-post-create-hook-plugin-for-mongoose-32d546ddd6fa
 
 type PostCreateCallback = (model: IPostCreateModel) => void
+
 interface IPostCreateModel extends Document {
   _wasNew?: boolean
 }
 
-export interface IPostCreateSchema extends Schema {
+export interface IPostCreateSchema<T> extends Schema {
   addPostCreate: (fn: PostCreateCallback) => void
   postCreateListeners?: PostCreateCallback[]
 }
 
-export function postCreatePlugin(schema: IPostCreateSchema) {
+export function postCreatePlugin<T extends Schema>(
+  schema: IPostCreateSchema<T>
+) {
   schema.addPostCreate = fn => {
     schema.postCreateListeners = schema.postCreateListeners || []
     schema.postCreateListeners.push(fn)
