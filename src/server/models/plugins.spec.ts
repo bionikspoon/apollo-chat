@@ -19,7 +19,7 @@ describe('#postCreatePlugin', () => {
     testSchema.addPostCreate(postCreateCB2)
   })
 
-  xtest('it triggers post create hooks', async () => {
+  test('it triggers post create hooks', async () => {
     await Test.create({ hello: 'world' })
 
     await expect(postCreateCB1).toHaveBeenCalledTimes(1)
