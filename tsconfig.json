@@ -6,7 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["es6", "dom", "esnext.asynciterable"],
-    "module": "commonjs",
+    "module": "none",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -17,7 +17,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es5"
+    "target": "ESNEXT"
   },
   "include": ["./src/**/*"],
 
