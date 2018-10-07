@@ -8,10 +8,11 @@ configure({ adapter: new Adapter() })
 
 beforeAll(() => StyleSheetTestUtils.suppressStyleInjection())
 
-beforeAll(async () => {
-  const mongoServer = new MongoMemoryServer()
-  const uri = await mongoServer.getConnectionString()
+const mongod = new MongoMemoryServer({ autoStart: false })
 
+beforeAll(async () => {
+  await mongod.start()
+  const uri = await mongod.getConnectionString()
   await mongoose.connect(
     uri,
     { useNewUrlParser: true }
@@ -20,4 +21,5 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await mongoose.disconnect()
+  await mongod.stop()
 })
