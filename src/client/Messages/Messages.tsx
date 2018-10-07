@@ -32,18 +32,18 @@ export default class Messages extends React.Component<MessageProps> {
     if (props.data.error) return <p>Error :(</p>
     if (!props.data.messages) return null
 
+    const messages = reverse(props.data.messages)
+
     return (
       <div className={css(styles.container)}>
-        {reverse(props.data.messages).map(message => {
-          return (
-            <p key={message.id} className={css(styles.message)}>
-              <Tag minimal={true} intent="primary">
-                {message.user}
-              </Tag>
-              <span className={css(styles.messageBody)}>{message.body}</span>
-            </p>
-          )
-        })}
+        {messages.map(message => (
+          <p key={message.id} className={css(styles.message)}>
+            <Tag minimal={true} intent="primary">
+              {message.user}
+            </Tag>
+            <span className={css(styles.messageBody)}>{message.body}</span>
+          </p>
+        ))}
       </div>
     )
   }

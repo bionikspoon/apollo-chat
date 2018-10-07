@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<ApolloProvider
+  client={
+    DefaultClient {
+      "cache": InMemoryCache {
+        "addTypename": true,
+        "config": Object {
+          "addTypename": true,
+          "dataIdFromObject": [Function],
+          "fragmentMatcher": HeuristicFragmentMatcher {},
+          "storeFactory": [Function],
+        },
+        "data": ObjectCache {
+          "data": Object {},
+        },
+        "optimistic": Array [],
+        "silenceBroadcast": false,
+        "typenameDocumentCache": WeakMap {},
+        "watches": Array [],
+      },
+      "defaultOptions": Object {},
+      "disableNetworkFetches": false,
+      "link": ApolloLink {
+        "request": [Function],
+      },
+      "mutate": [Function],
+      "query": [Function],
+      "queryDeduplication": true,
+      "reFetchObservableQueries": [Function],
+      "resetStore": [Function],
+      "resetStoreCallbacks": Array [],
+      "ssrMode": false,
+      "store": DataStore {
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "storeFactory": [Function],
+          },
+          "data": ObjectCache {
+            "data": Object {},
+          },
+          "optimistic": Array [],
+          "silenceBroadcast": false,
+          "typenameDocumentCache": WeakMap {},
+          "watches": Array [],
+        },
+      },
+      "version": "2.4.2",
+      "watchQuery": [Function],
+    }
+  }
+>
+  <div
+    className="bp3-ui-text bp3-dark container_1py0714"
+  >
+    <Apollo(Messages) />
+    <Apollo(AddMessageForm) />
+  </div>
+</ApolloProvider>
+`;
