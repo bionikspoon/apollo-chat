@@ -9,8 +9,8 @@ describe('#postCreatePlugin', () => {
   testSchema.plugin(postCreatePlugin)
   const Test = model('Test', testSchema)
 
-  beforeAll(async () => {
-    await Test.init()
+  beforeEach(async () => {
+    // await Test.init()
 
     postCreateCB1 = jest.fn()
     postCreateCB2 = jest.fn()
