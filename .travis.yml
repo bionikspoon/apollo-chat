@@ -2,7 +2,7 @@ language: node_js
 before_install:
   - npm i -g yarn@1.10.x
   - yarn --version
-script: yarn test --ci  --coverage --cacheDirectory=jest_cache
+script: yarn test --ci --cacheDirectory=jest_cache
 cache:
   yarn: true
   directories:
