@@ -1,4 +1,5 @@
 import { Tag } from '@blueprintjs/core'
+import { css, StyleSheet } from 'aphrodite'
 import { append, evolve, pipe, prop, reverse, uniqBy } from 'ramda'
 import * as React from 'react'
 
@@ -32,21 +33,14 @@ export default class Messages extends React.Component<MessageProps> {
     if (!props.data.messages) return null
 
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column-reverse',
-          height: 'calc(100% - 30px)',
-          overflowY: 'scroll',
-        }}
-      >
+      <div className={css(styles.container)}>
         {reverse(props.data.messages).map(message => {
           return (
-            <p key={message.id} style={{ marginBottom: 2 }}>
+            <p key={message.id} className={css(styles.message)}>
               <Tag minimal={true} intent="primary">
                 {message.user}
               </Tag>
-              <span style={{ marginLeft: 5 }}>{message.body}</span>
+              <span className={css(styles.messageBody)}>{message.body}</span>
             </p>
           )
         })}
@@ -54,3 +48,14 @@ export default class Messages extends React.Component<MessageProps> {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column-reverse',
+    overflowY: 'scroll',
+  },
+  message: { marginBottom: '.2rem' },
+  messageBody: { marginLeft: '.5rem' },
+})

@@ -4,16 +4,14 @@ export * from 'apollo-client'
 export * from 'apollo-link'
 export * from 'apollo-cache-inmemory'
 
+import { ApolloCache } from 'apollo-cache'
+import { CacheResolverMap, InMemoryCache } from 'apollo-cache-inmemory'
+import ApolloClient from 'apollo-client'
 import { ApolloLink, Observable, Operation, split } from 'apollo-link'
 import { ErrorLink, onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http'
 import { ClientStateConfig, withClientState } from 'apollo-link-state'
 import { WebSocketLink } from 'apollo-link-ws'
-
-import { ApolloCache } from 'apollo-cache'
-import { CacheResolverMap, InMemoryCache } from 'apollo-cache-inmemory'
-import ApolloClient from 'apollo-client'
-
 import { getMainDefinition } from 'apollo-utilities'
 
 interface IPresetConfig {

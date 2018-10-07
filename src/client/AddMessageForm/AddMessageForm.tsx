@@ -1,18 +1,18 @@
 import { Button, ControlGroup, InputGroup, Tag } from '@blueprintjs/core'
+import { css, StyleSheet } from 'aphrodite'
 import * as React from 'react'
+import { ChangeEvent, Component, FormEvent } from 'react'
+
 import { AddMessageFormProps } from './enhancers'
 
-export default class AddMessageForm extends React.Component<
-  AddMessageFormProps,
-  {}
-> {
+export default class AddMessageForm extends Component<AddMessageFormProps, {}> {
   public state = { body: '' }
 
   public render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <ControlGroup fill={true}>
-          <Tag intent="success" style={{ flexGrow: 0 }}>
+          <Tag intent="success" className={css(styles.tag)}>
             Manu
           </Tag>
           <InputGroup
@@ -28,7 +28,7 @@ export default class AddMessageForm extends React.Component<
     )
   }
 
-  private handleSubmit = (event: React.FormEvent) => {
+  private handleSubmit = (event: FormEvent) => {
     event.preventDefault()
 
     this.props.mutate({
@@ -41,7 +41,11 @@ export default class AddMessageForm extends React.Component<
     this.setState({ body: '' })
   }
 
-  private handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  private handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({ body: event.target.value })
   }
 }
+
+const styles = StyleSheet.create({
+  tag: { flexGrow: 0 },
+})

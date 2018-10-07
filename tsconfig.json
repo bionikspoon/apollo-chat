@@ -19,15 +19,17 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
-  "include": ["src/server/**/*"],
+  "include": ["./src/**/*"],
+
   "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
     "acceptance-tests",
-    "webpack",
+    "build",
+    "dist",
     "jest",
-    "src/setupTests.ts"
+    "node_modules",
+    "scripts",
+    "src/setupTests.ts",
+    "webpack"
   ]
   // {
   //   "compilerOptions": {
