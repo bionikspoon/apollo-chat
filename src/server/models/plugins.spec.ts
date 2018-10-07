@@ -6,7 +6,7 @@ describe('#postCreatePlugin', () => {
   let postCreateCB1: any
   let postCreateCB2: any
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const testSchema = new Schema({
       hello: String,
     }) as IPostCreateSchema<Schema>
@@ -23,8 +23,10 @@ describe('#postCreatePlugin', () => {
   })
 
   test('it triggers post create hooks', async () => {
-    jest.setTimeout(30000)
-    await Test.create({ hello: 'world' })
+    jest.setTimeout(60000)
+
+    const test = await Test.create({ hello: 'world' })
+    console.log('test', test)
 
     expect(postCreateCB1).toHaveBeenCalledTimes(1)
     expect(postCreateCB2).toHaveBeenCalledTimes(1)
