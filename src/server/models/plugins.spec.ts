@@ -22,14 +22,11 @@ describe('#postCreatePlugin', () => {
     testSchema.addPostCreate(postCreateCB2)
   })
 
-  test('it triggers post create hooks', async () => {
-    jest.setTimeout(60000)
-
-    const test = await Test.create({ hello: 'world' })
+  test('it triggers post create hooks', async done => {
+    await Test.create({ hello: 'world' })
 
     expect(postCreateCB1).toHaveBeenCalledTimes(1)
     expect(postCreateCB2).toHaveBeenCalledTimes(1)
-    console.log('test', test)
-    return
+    return done()
   })
 })
