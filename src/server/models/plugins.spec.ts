@@ -1,4 +1,4 @@
-import { model, Schema, Model, Document } from 'mongoose'
+import { model, Schema } from 'mongoose'
 import { IPostCreateSchema, postCreatePlugin } from './plugins'
 
 describe('#postCreatePlugin', () => {
@@ -9,8 +9,8 @@ describe('#postCreatePlugin', () => {
   testSchema.plugin(postCreatePlugin)
   const Test = model('Test', testSchema)
 
-  beforeEach(() => {
-    // await Test.init()
+  beforeEach(async () => {
+    await Test.init()
 
     postCreateCB1 = jest.fn()
     postCreateCB2 = jest.fn()
@@ -22,7 +22,7 @@ describe('#postCreatePlugin', () => {
   test('it triggers post create hooks', async () => {
     await Test.create({ hello: 'world' })
 
-    expect(postCreateCB1).toHaveBeenCalledTimes(1)
-    expect(postCreateCB2).toHaveBeenCalledTimes(1)
+    await expect(postCreateCB1).toHaveBeenCalledTimes(1)
+    await expect(postCreateCB2).toHaveBeenCalledTimes(1)
   })
 })

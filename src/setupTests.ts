@@ -6,7 +6,9 @@ import * as mongoose from 'mongoose'
 
 configure({ adapter: new Adapter() })
 
-beforeAll(() => StyleSheetTestUtils.suppressStyleInjection())
+beforeAll(() => {
+  StyleSheetTestUtils.suppressStyleInjection()
+})
 
 const mongod = new MongoMemoryServer({ autoStart: false })
 
