@@ -3,6 +3,8 @@ before_install:
   - npm i -g yarn@1.10.x
   - yarn --version
 script: yarn test --coverage --cacheDirectory=jest_cache
+after_success:
+  - cat coverage/lcov.info | npx coverage
 cache:
   yarn: true
   directories:
