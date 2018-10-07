@@ -26,9 +26,10 @@ describe('#postCreatePlugin', () => {
     jest.setTimeout(60000)
 
     const test = await Test.create({ hello: 'world' })
-    console.log('test', test)
 
     expect(postCreateCB1).toHaveBeenCalledTimes(1)
     expect(postCreateCB2).toHaveBeenCalledTimes(1)
+    console.log('test', test)
+    return
   })
 })
