@@ -17,7 +17,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "ESNEXT"
+    "target": "ES2015"
   },
   "include": ["./src/**/*"],
 
