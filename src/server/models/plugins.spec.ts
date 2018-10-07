@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose'
 import { IPostCreateSchema, postCreatePlugin } from './plugins'
 
-describe('#postCreatePlugin', () => {
+describe.skip('#postCreatePlugin', () => {
   let postCreateCB1: jest.Mock
   let postCreateCB2: jest.Mock
 
