@@ -1,8 +1,8 @@
 // copied from https://github.com/apollographql/apollo-link/blob/master/packages/apollo-link/src/link.ts
 
+export * from 'apollo-cache-inmemory'
 export * from 'apollo-client'
 export * from 'apollo-link'
-export * from 'apollo-cache-inmemory'
 
 import { ApolloCache } from 'apollo-cache'
 import { CacheResolverMap, InMemoryCache } from 'apollo-cache-inmemory'

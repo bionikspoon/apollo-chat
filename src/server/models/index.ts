@@ -1,5 +1,4 @@
 import { model, Schema } from 'mongoose'
-
 import pubsub, * as ACTION from '../pubsub'
 import { IPostCreateSchema, postCreatePlugin } from './plugins'
 

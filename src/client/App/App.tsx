@@ -1,9 +1,7 @@
 import * as React from 'react'
-
 import { ApolloProvider } from 'react-apollo'
 import * as Loadable from 'react-loadable'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-
 import FullPageLoading from '../FullPageLoading'
 import { client } from '../setupApollo'
 

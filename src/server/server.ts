@@ -5,7 +5,6 @@ import * as Koa from 'koa'
 import * as helmet from 'koa-helmet'
 import * as logger from 'koa-logger'
 import * as serve from 'koa-static'
-
 import config from './config'
 import { resolvers, typeDefs } from './schema'
 

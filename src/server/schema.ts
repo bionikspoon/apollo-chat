@@ -1,6 +1,5 @@
 import { gql } from 'apollo-server-koa'
 import { identity } from 'ramda'
-
 import { Message } from './models'
 import pubsub, * as ACTION from './pubsub'
 

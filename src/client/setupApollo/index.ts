@@ -5,5 +5,3 @@ export const client = new ApolloClient({
   clientState,
   uri: '/graphql',
 })
-
-// Mutation: {

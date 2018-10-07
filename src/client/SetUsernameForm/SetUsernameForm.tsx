@@ -1,8 +1,6 @@
-import * as React from 'react'
-
 import { Card, Elevation, FormGroup, InputGroup } from '@blueprintjs/core'
 import { css, StyleSheet } from 'aphrodite'
-
+import * as React from 'react'
 import { SetUsernameFormProps } from './enhancers'
 
 export default function SetUsernameForm(props: SetUsernameFormProps) {

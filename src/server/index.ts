@@ -1,5 +1,4 @@
 import { connect } from 'mongoose'
-
 import config from './config'
 import server from './server'
 

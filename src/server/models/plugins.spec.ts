@@ -1,5 +1,4 @@
 import { model, Schema } from 'mongoose'
-
 import { IPostCreateSchema, postCreatePlugin } from './plugins'
 
 describe('#postCreatePlugin', () => {
