@@ -16,13 +16,18 @@ describe('#postCreatePlugin', () => {
     postCreateCB2 = jest.fn()
 
     testSchema.addPostCreate(postCreateCB1)
-    testSchema.addPostCreate(postCreateCB2)
+    ;(Test.schema as IPostCreateSchema<Schema>).addPostCreate(postCreateCB2)
   })
 
   test('it triggers post create hooks', async () => {
     await Test.create({ hello: 'world' })
 
-    await expect(postCreateCB1).toHaveBeenCalledTimes(1)
-    await expect(postCreateCB2).toHaveBeenCalledTimes(1)
+    expect(postCreateCB1).toHaveBeenCalledTimes(1)
+  })
+
+  test('it triggers post create hooks', async () => {
+    await Test.create({ hello: 'world' })
+
+    expect(postCreateCB2).toHaveBeenCalledTimes(1)
   })
 })
