@@ -29,9 +29,10 @@ export default {
   resolvers: {
     Mutation: {
       setUser: (_, { user }, { cache }) => {
-        return cache.writeData({
+        cache.writeData({
           data: { user: { ...user, __typename: 'ClientUser' } },
         })
+        return null
       },
     } as IMutations,
   },

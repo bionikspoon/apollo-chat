@@ -3,13 +3,18 @@ import '@blueprintjs/icons/lib/css/blueprint-icons.css' // tslint:disable-line o
 import '@blueprintjs/core/lib/css/blueprint.css' // tslint:disable-line ordered-imports
 import './index.css'
 
-import { FocusStyleManager } from '@blueprintjs/core'
+import {
+  Classes,
+  FocusStyleManager,
+  setHotkeysDialogProps,
+} from '@blueprintjs/core'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
 
 FocusStyleManager.onlyShowFocusOnTabs()
+setHotkeysDialogProps({ className: Classes.DARK })
 
 ReactDOM.render(<App />, document.getElementById('root') as HTMLElement)
 registerServiceWorker()

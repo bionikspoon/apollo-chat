@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme'
 import * as React from 'react'
-import SetUsernameForm from '.'
+import SetUserForm from '.'
 
 test('it matches snapshot', () => {
-  const wrapper = shallow(<SetUsernameForm />)
+  const wrapper = shallow(<SetUserForm />)
   expect(wrapper).toMatchSnapshot()
 })

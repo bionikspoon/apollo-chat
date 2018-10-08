@@ -26,7 +26,7 @@ const SET_USERNAME = gql`
   }
 `
 
-export type SetUsernameFormProps = ChildMutateProps<
+export type SetUserFormProps = ChildMutateProps<
   ChildDataProps<RouteComponentProps, IData>,
   {},
   { username: string; color: Intent }

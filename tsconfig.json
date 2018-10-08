@@ -5,7 +5,7 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["es6", "dom", "esnext.asynciterable"],
+    "lib": ["es2018", "dom", "esnext.asynciterable"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -17,7 +17,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "ES2015"
+    "target": "es5"
   },
   "include": ["./src/**/*"],
 
@@ -31,6 +31,7 @@
     "src/setupTests.ts",
     "webpack"
   ]
+
   // {
   //   "compilerOptions": {
   //     /* Basic Options */
