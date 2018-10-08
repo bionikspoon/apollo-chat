@@ -1,4 +1,4 @@
-import { Classes, Tag } from '@blueprintjs/core'
+import { Classes, Intent, Tag } from '@blueprintjs/core'
 import { css, StyleSheet } from 'aphrodite/no-important'
 import cx from 'classnames'
 import { append, evolve, pipe, prop, reverse, uniqBy } from 'ramda'
@@ -39,11 +39,12 @@ export default class Messages extends React.Component<MessagesProps> {
       <div className={css(styles.container)}>
         {messages.map(message => (
           <Message
-            key={message.id}
-            id={message.id}
-            user={message.user}
             body={message.body}
+            color={message.color}
+            id={message.id}
+            key={message.id}
             loading={false}
+            user={message.user}
           />
         ))}
       </div>
@@ -72,6 +73,7 @@ function MessagesLoading() {
           id={message.id.toString()}
           user={message.user}
           body={message.body}
+          color={Intent.NONE}
           loading={true}
         />
       ))}
@@ -83,13 +85,14 @@ function Message(props: {
   id: string
   user: string
   body: string
+  color: Intent
   loading: boolean
 }) {
   return (
     <p key={props.id} className={css(styles.message)}>
       <Tag
         minimal={true}
-        intent="primary"
+        intent={props.color}
         className={cx(
           css(styles.messageTag),
           props.loading && Classes.SKELETON

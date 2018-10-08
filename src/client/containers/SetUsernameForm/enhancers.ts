@@ -1,27 +1,35 @@
+import { Intent } from '@blueprintjs/core'
 import gql from 'graphql-tag'
-import { ChildMutateProps, ChildProps, compose, graphql } from 'react-apollo'
+import {
+  ChildDataProps,
+  ChildMutateProps,
+  compose,
+  graphql,
+} from 'react-apollo'
 import { RouteComponentProps, withRouter } from 'react-router'
+import { IUser } from '../../setupApollo/clientState'
 
-interface IData {
-  username: string
-}
+type IData = IUser
 
 const GET_USERNAME = gql`
   query GetUsername {
-    username @client
+    user @client {
+      username
+      color
+    }
   }
 `
 
 const SET_USERNAME = gql`
-  mutation SetUsername($username: String!) {
-    setUsername(username: $username) @client
+  mutation SetUsername($username: String!, $color: String!) {
+    setUser(user: { username: $username, color: $color }) @client
   }
 `
 
 export type SetUsernameFormProps = ChildMutateProps<
-  ChildProps<RouteComponentProps, IData>,
+  ChildDataProps<RouteComponentProps, IData>,
   {},
-  { username: string }
+  { username: string; color: Intent }
 >
 
 export default compose(

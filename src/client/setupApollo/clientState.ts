@@ -1,20 +1,37 @@
+import { Intent } from '@blueprintjs/core'
 import { ApolloCache } from 'apollo-cache'
 import { ClientStateConfig } from 'apollo-link-state'
 
+type Mutation<T extends {}> = (
+  obj: any,
+  next: T,
+  context: { cache: ApolloCache<any> }
+) => void
+
+export interface IUser {
+  user: {
+    username: string
+    color: Intent
+    __typename?: 'ClientUser'
+  }
+}
+
+type Query = IUser
+
 interface IMutations {
-  setUsername: (
-    obj: any,
-    next: { username: string },
-    context: { cache: ApolloCache<any> }
-  ) => void
+  setUser: Mutation<IUser>
 }
 
 export default {
-  defaults: { username: '' },
+  defaults: {
+    user: { username: 'User', color: Intent.PRIMARY, __typename: 'ClientUser' },
+  } as Query,
   resolvers: {
     Mutation: {
-      setUsername: (_, { username }, { cache }) => {
-        return cache.writeData({ data: { username } })
+      setUser: (_, { user }, { cache }) => {
+        return cache.writeData({
+          data: { user: { ...user, __typename: 'ClientUser' } },
+        })
       },
     } as IMutations,
   },

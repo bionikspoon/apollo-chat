@@ -8,27 +8,30 @@ export default class AddMessageForm extends Component<AddMessageFormProps, {}> {
   public state = { body: '' }
 
   public componentDidMount() {
-    if (!this.props.data) return
-    if (this.props.data.username && this.props.data.username.length) return
+    if (!this.props.data.user) return
+    const { username } = this.props.data.user
+    if (username.length) return
 
     this.props.history.replace('/')
   }
 
   public render() {
-    if (!this.props.data) return
+    if (!this.props.data.user) return
+    const { color, username } = this.props.data.user
 
     return (
       <form onSubmit={this.handleSubmit}>
         <ControlGroup fill={true}>
-          <Tag intent="success" className={css(styles.tag)}>
-            {this.props.data.username}
+          <Tag intent={color} className={css(styles.tag)}>
+            {username}
           </Tag>
           <InputGroup
             type="text"
             value={this.state.body}
             onChange={this.handleInputChange}
+            intent={color}
             rightElement={
-              <Button type="submit" icon="arrow-right" intent="success" />
+              <Button type="submit" icon="arrow-right" intent={color} />
             }
           />
         </ControlGroup>
@@ -38,12 +41,18 @@ export default class AddMessageForm extends Component<AddMessageFormProps, {}> {
 
   private handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    if (!this.props.data) return
 
-    this.props.mutate({
+    if (!this.props.data.user) return
+    const { color, username } = this.props.data.user
+    const { body } = this.state
+
+    if (!this.state.body.length) return
+
+    this.props.addMessage({
       variables: {
-        body: this.state.body,
-        user: this.props.data.username,
+        body,
+        color,
+        username,
       },
     })
 

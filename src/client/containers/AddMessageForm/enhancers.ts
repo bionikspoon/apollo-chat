@@ -1,35 +1,40 @@
+import { Intent } from '@blueprintjs/core'
 import gql from 'graphql-tag'
-import {
-  ChildDataProps,
-  ChildMutateProps,
-  compose,
-  graphql,
-} from 'react-apollo'
+import { ChildDataProps, compose, graphql, MutationFunc } from 'react-apollo'
 import { RouteComponentProps, withRouter } from 'react-router'
+import { IUser } from '../../setupApollo/clientState'
 
-interface IData {
-  username: string
-}
-interface IResponse {
+type IData = IUser
+interface IAddMessageResponse {
   id: string
   user: string
   body: string
   date: string
 }
 
+interface IAddMessageVariables {
+  body: string
+  username: string
+  color: Intent
+}
+
 const GET_USERNAME = gql`
   query GetUsername {
-    username @client
+    user @client {
+      username
+      color
+    }
   }
 `
 
 const ADD_MESSAGE_MUTATION = gql`
-  mutation AddMessageForm($user: String!, $body: String!) {
-    addMessage(user: $user, body: $body) {
+  mutation AddMessageForm($username: String!, $body: String!, $color: String!) {
+    addMessage(user: $username, body: $body, color: $color) {
       id
       user
       body
       date
+      color
     }
   }
 `
@@ -37,10 +42,9 @@ const ADD_MESSAGE_MUTATION = gql`
 export default compose(
   withRouter,
   graphql(GET_USERNAME),
-  graphql(ADD_MESSAGE_MUTATION)
+  graphql(ADD_MESSAGE_MUTATION, { name: 'addMessage' })
 )
 
-export type AddMessageFormProps = ChildMutateProps<
-  ChildDataProps<RouteComponentProps, IData>,
-  IResponse
->
+export type AddMessageFormProps = ChildDataProps<RouteComponentProps, IData> & {
+  addMessage: MutationFunc<IAddMessageResponse, IAddMessageVariables>
+}

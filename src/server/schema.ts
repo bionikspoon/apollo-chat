@@ -8,7 +8,7 @@ export const typeDefs = gql`
     messages: [Message]!
   }
   type Mutation {
-    addMessage(user: String!, body: String!): Message!
+    addMessage(user: String!, body: String!, color: String!): Message!
   }
   type Subscription {
     messageAdded: Message
@@ -18,6 +18,7 @@ export const typeDefs = gql`
     user: String!
     body: String!
     date: String!
+    color: String!
   }
 `
 

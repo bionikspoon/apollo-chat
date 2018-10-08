@@ -14,8 +14,18 @@ exports[`it matches snapshot 1`] = `
         },
         "data": ObjectCache {
           "data": Object {
+            "$ROOT_QUERY.user": Object {
+              "__typename": "ClientUser",
+              "color": "primary",
+              "username": "User",
+            },
             "ROOT_QUERY": Object {
-              "username": "",
+              "user": Object {
+                "generated": true,
+                "id": "$ROOT_QUERY.user",
+                "type": "id",
+                "typename": "ClientUser",
+              },
             },
           },
         },
@@ -47,8 +57,18 @@ exports[`it matches snapshot 1`] = `
           },
           "data": ObjectCache {
             "data": Object {
+              "$ROOT_QUERY.user": Object {
+                "__typename": "ClientUser",
+                "color": "primary",
+                "username": "User",
+              },
               "ROOT_QUERY": Object {
-                "username": "",
+                "user": Object {
+                  "generated": true,
+                  "id": "$ROOT_QUERY.user",
+                  "type": "id",
+                  "typename": "ClientUser",
+                },
               },
             },
           },
