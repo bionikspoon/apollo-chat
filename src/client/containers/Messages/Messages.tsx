@@ -1,37 +1,21 @@
-import { Classes, Intent, Tag } from '@blueprintjs/core'
 import { css, StyleSheet } from 'aphrodite/no-important'
-import cx from 'classnames'
-import { append, evolve, pipe, prop, reverse, uniqBy } from 'ramda'
+import { reverse } from 'ramda'
 import * as React from 'react'
-import { MESSAGE_ADDED_SUBSCRIPTION, MessagesProps } from './enhancers'
-import MOCK_MESSAGES from './mockMessages'
-
-const addItem = (item: any) =>
-  pipe(
-    append(item),
-    uniqBy(prop('id'))
-  )
+import { MessagesProps } from './enhancers'
+import Loading from './Loading'
+import Message from './Message'
 
 export default class Messages extends React.Component<MessagesProps> {
   public componentDidMount() {
-    const { props } = this
-    if (!props.data) return
-
-    props.data.subscribeToMore({
-      document: MESSAGE_ADDED_SUBSCRIPTION,
-      updateQuery: (previousResult, { subscriptionData }) =>
-        evolve({
-          messages: addItem(subscriptionData.data.messageAdded),
-        })(previousResult),
-    })
+    if (!this.props.data) return
+    this.props.subscribeToMessages()
   }
 
   public render() {
     const { props } = this
-    if (!props.data) return null
-    if (props.data.loading) return <MessagesLoading />
-    if (props.data.error) return <p>Error :(</p>
-    if (!props.data.messages) return null
+
+    if (props.data.loading) return <Loading css={styles.container} />
+    if (!props.data.messages) return <Loading css={styles.container} />
 
     const messages = reverse(props.data.messages)
 
@@ -45,10 +29,17 @@ export default class Messages extends React.Component<MessagesProps> {
             key={message.id}
             loading={false}
             user={message.user}
+            isRead={message.isRead}
+            onReadMessage={this.handleReadMessage}
           />
         ))}
       </div>
     )
+  }
+
+  private handleReadMessage = (id: string, isRead: boolean) => {
+    const { props } = this
+    props.readMessage({ variables: { id, isRead } })
   }
 }
 
@@ -59,55 +50,4 @@ const styles = StyleSheet.create({
     flexDirection: 'column-reverse',
     overflowY: 'scroll',
   },
-  message: { marginBottom: 20 },
-  messageBody: { marginLeft: 6 },
-  messageTag: { marginBottom: 4 },
 })
-
-function MessagesLoading() {
-  return (
-    <div className={css(styles.container)}>
-      {MOCK_MESSAGES.map(message => (
-        <Message
-          key={message.id}
-          id={message.id.toString()}
-          user={message.user}
-          body={message.body}
-          color={Intent.NONE}
-          loading={true}
-        />
-      ))}
-    </div>
-  )
-}
-
-function Message(props: {
-  id: string
-  user: string
-  body: string
-  color: Intent
-  loading: boolean
-}) {
-  return (
-    <p key={props.id} className={css(styles.message)}>
-      <Tag
-        minimal={true}
-        intent={props.color}
-        className={cx(
-          css(styles.messageTag),
-          props.loading && Classes.SKELETON
-        )}
-      >
-        {props.user}
-      </Tag>
-      <span
-        className={cx(
-          css(styles.messageBody),
-          props.loading && Classes.SKELETON
-        )}
-      >
-        {props.body}
-      </span>
-    </p>
-  )
-}

@@ -85,7 +85,7 @@ class SetUserForm extends React.PureComponent<SetUserFormProps> {
     if (!this.props.data.user) return
     const { color } = this.props.data.user
 
-    this.props.mutate({
+    this.props.setUser({
       variables: { username: event.target.value, color },
     })
   }
@@ -96,7 +96,7 @@ class SetUserForm extends React.PureComponent<SetUserFormProps> {
     const { value } = event.target
     if (!isIntent(value)) return
 
-    this.props.mutate({
+    this.props.setUser({
       variables: { username, color: value },
     })
   }
