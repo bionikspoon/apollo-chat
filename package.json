@@ -74,7 +74,7 @@
     "build:client": "react-scripts-ts build",
     "build:server": "tsc --project tsconfig.server.json",
     "heroku-postbuild": "yarn build",
-    "test": "react-scripts-ts test",
+    "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "start": "concurrently --kill-others 'yarn start:client' 'yarn start:server'",
     "start:client": "react-scripts-ts start",

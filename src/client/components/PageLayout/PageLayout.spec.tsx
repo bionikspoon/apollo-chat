@@ -1,12 +1,12 @@
-import { mount } from 'enzyme'
+import { render } from 'enzyme'
 import React from 'react'
-import PageLaout from '.'
+import PageLayout from '.'
 
 test('it matches snapshot', () => {
-  const wrapper = mount(
-    <PageLaout>
+  const wrapper = render(
+    <PageLayout>
       <h1>Test</h1>
-    </PageLaout>
+    </PageLayout>
   )
   expect(wrapper).toMatchSnapshot()
 })
