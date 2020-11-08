@@ -1,6 +1,6 @@
 import { css, StyleSheet } from 'aphrodite/no-important'
 import { reverse } from 'ramda'
-import * as React from 'react'
+import React from 'react'
 import { MessagesProps } from './enhancers'
 import Loading from './Loading'
 import Message from './Message'
@@ -21,7 +21,7 @@ export default class Messages extends React.Component<MessagesProps> {
 
     return (
       <div className={css(styles.container)}>
-        {messages.map(message => (
+        {messages.map((message) => (
           <Message
             body={message.body}
             color={message.color}

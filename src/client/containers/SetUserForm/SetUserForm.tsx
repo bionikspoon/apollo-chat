@@ -12,7 +12,7 @@ import {
   Tag,
 } from '@blueprintjs/core'
 import { css, StyleSheet } from 'aphrodite/no-important'
-import * as React from 'react'
+import React from 'react'
 import { SetUserFormProps } from './enhancers'
 
 const INTENTS = Object.values(Intent)
@@ -56,12 +56,12 @@ class SetUserForm extends React.PureComponent<SetUserFormProps> {
             />
           </FormGroup>
           <RadioGroup
-            onChange={this.handleColorChange}
+            onChange={this.handleColorChange as any}
             selectedValue={color}
             inline={true}
             className={css(styles.radioGroup)}
           >
-            {INTENTS.map(intent => (
+            {INTENTS.map((intent) => (
               <Radio value={intent} key={intent} large={true}>
                 <Tag
                   large={true}

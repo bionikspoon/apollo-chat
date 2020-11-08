@@ -37,7 +37,7 @@ const READ_MESSAGE = gql`
 
 export default compose(
   graphql<{}, IData, {}, IQueryChildProps>(MESSAGES_QUERY, {
-    props: props => ({
+    props: (props) => ({
       ...props,
 
       subscribeToMessages: () => {
@@ -73,11 +73,8 @@ interface IQueryChildProps {
   subscribeToMessages: () => void
 }
 
-const addItem = (item: any) =>
-  pipe(
-    append(item),
-    uniqBy(prop('id'))
-  )
+const addItem = <T, U extends Record<'id', T>>(item: U) =>
+  pipe<U[], U[], U[]>(append(item), uniqBy(prop('id')))
 
 const updateQuery: UpdateQueryFn<any> = (
   previousResult,

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import PageLayout from '../components/PageLayout'
 import AddMessageForm from '../containers/AddMessageForm'
 import Messages from '../containers/Messages'

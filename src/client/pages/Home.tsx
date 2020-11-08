@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite'
-import * as React from 'react'
+import React from 'react'
 import PageLayout from '../components/PageLayout'
 import SetUserForm from '../containers/SetUserForm'
 

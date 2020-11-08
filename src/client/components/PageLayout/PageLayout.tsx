@@ -1,7 +1,7 @@
 import { Classes, Colors } from '@blueprintjs/core'
 import { css, StyleDeclarationValue, StyleSheet } from 'aphrodite'
 import cx from 'classnames'
-import * as React from 'react'
+import React from 'react'
 
 interface IProps {
   children: React.ReactChild | React.ReactChild[]

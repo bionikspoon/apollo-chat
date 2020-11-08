@@ -14,7 +14,7 @@ const messageSchema = new Schema({
   body: { type: String, required: true },
   color: {
     default: Intent.NONE,
-    enum: Object.keys(Intent).map(key => Intent[key]),
+    enum: Object.keys(Intent).map((key) => Intent[key]),
     required: true,
     type: String,
   },
@@ -22,8 +22,8 @@ const messageSchema = new Schema({
   user: { required: true, type: String },
 }) as IPostCreateSchema<IMessage>
 
-messageSchema.plugin(postCreatePlugin)
-messageSchema.addPostCreate(doc => {
+messageSchema.plugin(postCreatePlugin as any)
+messageSchema.addPostCreate((doc) => {
   pubsub.publish(ACTION.MESSAGE_ADDED, doc)
 })
 

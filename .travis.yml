@@ -1,6 +1,6 @@
 language: node_js
 before_install:
-  - npm i -g yarn@1.10.x
+  - npm i -g yarn@1.22.x
   - yarn --version
 script: yarn test --coverage --cacheDirectory=jest_cache
 after_success:

@@ -1,11 +1,12 @@
 import { Message } from '.'
+import { Error } from 'mongoose'
 
 test('it should be invalid if empty', async () => {
   const message = new Message()
 
   await expect(message.validate()).rejects.toHaveProperty(
-    'errors.user.name',
-    'ValidatorError'
+    'errors.user',
+    expect.any(Error.ValidatorError)
   )
 })
 
@@ -15,5 +16,7 @@ test('it should be valid', async () => {
     user: 'Joe Sixpack',
   }
 
-  await expect(Message.create(message)).resolves.toMatchObject(message)
+  await expect(Message.create(message)).resolves.toMatchObject(
+    expect.objectContaining(message)
+  )
 })
