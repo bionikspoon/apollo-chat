@@ -1,7 +1,7 @@
 import { Classes, Colors, Intent, Tag } from '@blueprintjs/core'
 import { css, StyleSheet } from 'aphrodite'
 import cx from 'classnames'
-import * as React from 'react'
+import React from 'react'
 
 export default function Message(props: {
   id: string

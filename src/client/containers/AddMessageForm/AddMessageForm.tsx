@@ -1,6 +1,6 @@
 import { Button, ControlGroup, InputGroup, Tag } from '@blueprintjs/core'
 import { css, StyleSheet } from 'aphrodite'
-import * as React from 'react'
+import React from 'react'
 import { ChangeEvent, Component, FormEvent } from 'react'
 import { AddMessageFormProps } from './enhancers'
 

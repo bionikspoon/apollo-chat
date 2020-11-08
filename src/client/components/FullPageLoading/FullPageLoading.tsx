@@ -1,6 +1,6 @@
 import { Spinner } from '@blueprintjs/core'
 import { StyleSheet } from 'aphrodite'
-import * as React from 'react'
+import React from 'react'
 import PageLayout from '../PageLayout'
 
 export default function FullPageLoading() {

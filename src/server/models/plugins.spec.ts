@@ -6,7 +6,7 @@ describe.skip('#postCreatePlugin', () => {
   let postCreateCB2: jest.Mock
 
   const testSchema = new Schema({ hello: String }) as IPostCreateSchema<Schema>
-  testSchema.plugin(postCreatePlugin)
+  testSchema.plugin(postCreatePlugin as any)
   const Test = model('Test', testSchema)
 
   beforeEach(async () => {

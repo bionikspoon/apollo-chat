@@ -19,7 +19,7 @@ interface IPresetConfig {
   uri?: string
   credentials?: string
   headers?: any
-  fetch?: GlobalFetch['fetch']
+  fetch?: typeof fetch
   fetchOptions?: HttpLink.Options
   clientState?: ClientStateConfig
   onError?: ErrorLink.ErrorHandler
@@ -54,7 +54,7 @@ export default class DefaultClient<TCache> extends ApolloClient<TCache> {
   constructor(config: IPresetConfig = {}) {
     if (config) {
       const diff = Object.keys(config).filter(
-        key => PRESET_CONFIG_KEYS.indexOf(key) === -1
+        (key) => PRESET_CONFIG_KEYS.indexOf(key) === -1
       )
 
       if (diff.length > 0) {
@@ -118,10 +118,10 @@ export default class DefaultClient<TCache> extends ApolloClient<TCache> {
     const requestHandler = request
       ? new ApolloLink(
           (operation, forward: any) =>
-            new Observable(observer => {
+            new Observable((observer) => {
               let handle: any
               Promise.resolve(operation)
-                .then(oper => request(oper))
+                .then((oper) => request(oper))
                 .then(() => {
                   handle = forward(operation).subscribe({
                     complete: observer.complete.bind(observer),
@@ -166,12 +166,11 @@ export default class DefaultClient<TCache> extends ApolloClient<TCache> {
       httpLink
     )
 
-    const link = ApolloLink.from([
-      errorLink,
-      requestHandler,
-      stateLink,
-      webLink,
-    ].filter(x => !!x) as ApolloLink[])
+    const link = ApolloLink.from(
+      [errorLink, requestHandler, stateLink, webLink].filter(
+        (x) => !!x
+      ) as ApolloLink[]
+    )
 
     super({ cache, link } as any)
   }
